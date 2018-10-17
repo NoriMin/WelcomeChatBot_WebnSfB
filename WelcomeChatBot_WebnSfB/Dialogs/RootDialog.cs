@@ -58,6 +58,7 @@ namespace WelcomeChatBot_WebnSfB.Dialogs
                 else
                 {
                     if (message.ChannelId == "emulator" || message.ChannelId == "webchat")
+                    //if(message.ChannelId == "skypeforbusiness")
                     {
                         await ShowQuestionsWebChat(context, result);
                     }
@@ -103,10 +104,9 @@ namespace WelcomeChatBot_WebnSfB.Dialogs
             int i;
             string resultMessage = "以下から選択してください(番号で入力)\n";
 
-
             for (i = 0; i < result.Answers.Count; i++)
             {
-                resultMessage = resultMessage + (i + 1).ToString() + ". " + result.Answers[i].Questions[0] + "\n";
+                resultMessage = resultMessage + (i + 1).ToString() + ". " + "[" + (string)httpResponseJson.answers[i].metadata[0].value + "]" + " "+result.Answers[i].Questions[0] + "\n";
             }
 
             resultMessage = resultMessage + (i + 1).ToString() + ". 上記のどれでもない\n";
